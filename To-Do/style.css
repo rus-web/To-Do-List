@@ -1,0 +1,59 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+.all{
+    font-style: italic;
+    color: #E6E6FA;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #1f4ba3,#4e085f);
+}
+.title{
+    font-size: 50px;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}/* Оглавление */
+
+.container-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    gap: 12px;
+}
+/* Пункты которые не выполнены */
+
+
+.container-ready{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    gap: 12px;
+}/* Пункты которые выполнены */
+
+.line{
+    border: solid black 1.5px;
+    width: 500px;
+}/* Линия между выполнеными задачами */
+
+.tasks{
+    width: 400px;
+    -webkit-backdrop-filter: blur(100px);
+    backdrop-filter: blur(100px);
+    background-color: linear-gradient(150deg, #2d54a2,#4e085f);
+}
+
+.tasks:hover{
+    color: black;
+    cursor: pointer;
+}
