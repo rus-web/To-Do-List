@@ -1,6 +1,4 @@
-
 `use strict`
-
 const undoneTasksContainer = document.getElementById('container-main') // Родитель новых задач
 const doneTasksContainer = document.getElementById('container-ready') // Родитель готовых задач
 let taskElements = document.getElementsByClassName('task') // Задачи
@@ -21,6 +19,12 @@ connection.onclose = (event) => {
     console.log("Connection closed");
 };
 
+connection.onmessage = (message) =>{ 
+    console.log("Server sent:", message.data);
+};
+// получаем ответ сервера
+
+
 
 for (let task of taskElements){
     task.addEventListener('click', function(event){
@@ -28,22 +32,20 @@ for (let task of taskElements){
             doneTasksContainer.appendChild(task)
             task.classList.replace('undone','done')
             task.firstChild.classList.replace('circle-undone', 'circle-done')
-        let obj = {
-            status: "done",
-            text: task.textContent
+            let obj = {
+                status: "done",
+                text: task.textContent,
             }
-        connection.send(JSON.stringify(obj))
-        console.log(`Server answer:${obj.text} is ${obj.status}`)
+            connection.send(JSON.stringify(obj))
         } else {
             undoneTasksContainer.appendChild(task)
             task.classList.replace('done','undone')
             task.firstChild.classList.replace('circle-done', 'circle-undone')
-        let obj = {
-            status: "undone",
-            text: task.textContent
+            let obj = {
+                status: "undone",
+                text: task.textContent,
             }
-        connection.send(JSON.stringify(obj))
-        console.log(`Server answer:${obj.text} is ${obj.status}`)
+            connection.send(JSON.stringify(obj))
         }
     })
 }
